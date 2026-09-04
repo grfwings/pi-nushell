@@ -1,0 +1,40 @@
+{
+  "name": "pi-nushell",
+  "version": "0.1.0",
+  "description": "A Pi extension that adds a Nushell command-execution tool.",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "nushell"
+  ],
+  "license": "MIT",
+  "packageManager": "bun@1.3.13",
+  "files": [
+    "index.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "0.84.4",
+    "@earendil-works/pi-tui": "0.84.4",
+    "@types/node": "^26.4.1",
+    "typebox": "^1.3.25",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}
