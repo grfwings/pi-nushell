@@ -8,7 +8,16 @@
     "pi-extension",
     "nushell"
   ],
+  "author": "Griffin Evans <griffinevans@protonmail.com>",
   "license": "Unlicense",
+  "homepage": "https://github.com/grfwings/pi-nushell#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grfwings/pi-nushell.git"
+  },
+  "bugs": {
+    "url": "https://github.com/grfwings/pi-nushell/issues"
+  },
   "packageManager": "bun@1.3.13",
   "files": [
     "index.ts",
@@ -17,7 +26,8 @@
   ],
   "scripts": {
     "check": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "bun test",
+    "prepublishOnly": "bun run check && bun run test"
   },
   "pi": {
     "extensions": [
@@ -32,9 +42,9 @@
   "devDependencies": {
     "@earendil-works/pi-coding-agent": "0.84.4",
     "@earendil-works/pi-tui": "0.84.4",
+    "@types/bun": "1.3.13",
     "@types/node": "^26.4.1",
     "typebox": "^1.3.25",
-    "typescript": "^7.0.2",
-    "vitest": "^4.1.11"
+    "typescript": "^7.0.2"
   }
 }
