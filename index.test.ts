@@ -42,21 +42,19 @@ describe("resolveNuExecutable", () => {
 		expect(resolveNuExecutable("nu", { PATH: directory, PATHEXT: ".EXE" }, directory)).toBe(executable);
 	});
 
-	it("honors PI_NU_PATH", () => {
+	it("accepts an explicit executable path", () => {
 		const directory = temporaryDirectory();
 		const filename = process.platform === "win32" ? "custom-nu.exe" : "custom-nu";
 		const executable = join(directory, filename);
 		writeFileSync(executable, "");
 		if (process.platform !== "win32") chmodSync(executable, 0o755);
 
-		expect(resolveNuExecutable(undefined, { PATH: "", PI_NU_PATH: executable }, directory)).toBe(executable);
+		expect(resolveNuExecutable(executable, { PATH: "" }, directory)).toBe(executable);
 	});
 
-	it("reports how to configure a missing executable", () => {
+	it("reports how to install a missing executable", () => {
 		const directory = temporaryDirectory();
-		expect(() => resolveNuExecutable("nu", { PATH: directory }, directory)).toThrow(
-			"Install Nushell or set PI_NU_PATH",
-		);
+		expect(() => resolveNuExecutable("nu", { PATH: directory }, directory)).toThrow("Install Nushell");
 	});
 });
 

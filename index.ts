@@ -24,7 +24,7 @@ export type NuToolInput = Static<typeof nuToolSchema>;
 export interface NuToolOptions {
 	/** Override command execution, for example to run Nushell on a remote host. */
 	operations?: BashOperations;
-	/** Explicit Nushell executable. Defaults to PI_NU_PATH, then `nu` on PATH. */
+	/** Explicit Nushell executable. Defaults to `nu` on PATH. */
 	nuPath?: string;
 	/** Expose current Pi session metadata as PI_* environment variables. Defaults to true. */
 	exposeSessionEnvironment?: boolean;
@@ -61,7 +61,7 @@ export function resolveNuExecutable(
 	env: NodeJS.ProcessEnv = process.env,
 	cwd = process.cwd(),
 ): string {
-	const executableName = requestedPath ?? environmentValue(env, "PI_NU_PATH") ?? "nu";
+	const executableName = requestedPath ?? "nu";
 	const hasDirectory = isAbsolute(executableName) || executableName.includes("/") || executableName.includes("\\");
 	if (hasDirectory) {
 		const candidate = isAbsolute(executableName) ? executableName : resolve(cwd, executableName);
@@ -76,7 +76,7 @@ export function resolveNuExecutable(
 		}
 	}
 
-	const suffix = executableName === "nu" ? " Install Nushell or set PI_NU_PATH." : "";
+	const suffix = executableName === "nu" ? " Install Nushell." : "";
 	throw new Error(`Nushell executable not found on PATH: ${executableName}.${suffix}`);
 }
 

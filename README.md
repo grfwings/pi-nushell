@@ -16,8 +16,6 @@ The tool follows pi's built-in `bash` tool behavior:
 
 - nushell
 
-Set `PI_NU_PATH` to use a nushell executable that is not on `PATH`:
-
 ## Install
 
 ```sh
