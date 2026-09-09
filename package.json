@@ -8,7 +8,7 @@
     "pi-extension",
     "nushell"
   ],
-  "license": "MIT",
+  "license": "Unlicense",
   "packageManager": "bun@1.3.13",
   "files": [
     "index.ts",
