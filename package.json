@@ -1,6 +1,6 @@
 {
   "name": "pi-nushell",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Pi extension that adds a Nushell command-execution tool.",
   "type": "module",
   "keywords": [
