@@ -134,4 +134,7 @@ export function createNuToolDefinition(cwd: string, options: NuToolOptions = {})
 
 export default function nushellExtension(pi: ExtensionAPI): void {
 	pi.registerTool(createNuToolDefinition(process.cwd()));
+
+	const userBashOperations = createLocalNuOperations();
+	pi.on("user_bash", () => ({ operations: userBashOperations }));
 }

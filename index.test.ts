@@ -220,16 +220,22 @@ describe("createNuToolDefinition", () => {
 });
 
 describe("extension registration", () => {
-	it("registers the nu tool", () => {
+	it("registers the nu tool and routes user bash commands through Nushell", () => {
 		let registeredName: string | undefined;
+		let userBashHandler: (() => unknown) | undefined;
 		const pi = {
 			registerTool(tool: { name: string }) {
 				registeredName = tool.name;
+			},
+			on(event: string, handler: unknown) {
+				if (event === "user_bash") userBashHandler = handler as () => unknown;
 			},
 		} as unknown as ExtensionAPI;
 
 		nushellExtension(pi);
 		expect(registeredName).toBe("nu");
+		expect(userBashHandler).toBeFunction();
+		expect((userBashHandler!() as { operations?: BashOperations }).operations?.exec).toBeFunction();
 	});
 });
 
